@@ -1,21 +1,66 @@
-
 <!doctype html>
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>VT Conduite Autonome</title>
-  <meta name="description" content="VT Conduite Autonome">
-  <meta name="author" content="SitePoint">
+    <title>VT Conduite Autonome</title>
+    <meta name="description" content="VT Conduite Autonome">
+    <meta name="author" content="Pierre Allegre">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <script>
+      // I found Twitter's documentation for the user timeline a bit difficult
+      // to follow. Here's a very basic working example for others who might
+      // also struggle with it
 
+      // First, include the twitter wiget.js before anything that might require
+      // it. The docs recommend including it directly in the page template
+
+      window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+
+        return t;
+      }(document, "script", "twitter-wjs"));
+    </script>
 </head>
-
 <body>
-    <a class="twitter-timeline" data-height="400" href="https://twitter.com/allegre_pierre/lists/enterprise-31457?ref_src=twsrc%5Etfw">A Twitter List by allegre_pierre</a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div id="twitter-timeline"></div>
+    <script>
+      // Instantiate your widget
+      (function() {
+        // See https://dev.twitter.com/web/javascript/creating-widgets#create-timeline
+        var dataSource = {
+          sourceType: 'profile',
+          screenName: 'twitterdev'
+        };
+
+        // Your HTML element's ID
+        var target = document.getElementById('twitter-timeline');
+
+        // See https://dev.twitter.com/web/embedded-timelines/parameters
+        var options = {
+          chrome: 'nofooter',
+          height: 800,
+          width: 500
+        };
+
+        twttr.ready(function(twttr) {
+          twttr.widgets.createTimeline(dataSource, target, options);
+        });
+      })()
+    </script>
 </body>
 </html>
 

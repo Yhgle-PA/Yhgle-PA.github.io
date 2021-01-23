@@ -2883,8 +2883,10 @@
 		}
 
 		.wrapper .twitter-time {
+			position: sticky;
+  			top: 10%;
 			float: right;
-			margin-right: 2%
+			margin-right: 2%;
 		}
 
 		.wrapper header {
